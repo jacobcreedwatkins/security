@@ -17,10 +17,6 @@ pivot:    **10.50.31.225**
 
 stack:    **#18**
 
-
-
-**8	JAWA-003-M	Fm9WjWQ6oGnlLz8	10.50.31.225**
-
 ### VTA 
 username: **jacob.c.watkins05**
 
@@ -31,3 +27,11 @@ domain:   **ipa**
 ### SSH into linops
 
 ssh -X student@10.50.27.195
+
+password: **password**
+
+### xfree RDP into winops
+
+xfreerdp /v:10.50.33.133 /u:student /p:password /dynamic-resolution +clipboard /size:1280x1010
+
+**note: make sure you only xfreerdp from ubuntu terminal and NOT terminator!**

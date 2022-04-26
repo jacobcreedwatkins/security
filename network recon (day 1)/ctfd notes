@@ -1,0 +1,13 @@
+logging into student@lin
+-------------------------
+
+ssh student@10.50.31.225 -D 9050
+Fm9WjWQ6oGnlLz8
+
+for i in {97..126}; do (ping -c 1 192.168.28.$i | grep "bytes from" &) ;done
+
+for i in {225..254}; do (ping -c 1 192.168.150.$i | grep "bytes from" &) ;done
+
+
+
+smb discovery script used: smb-os-discovery.nse (for smb stuff)

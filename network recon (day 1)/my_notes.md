@@ -83,6 +83,11 @@ see web.py script in 'scripts' directory
 [link to script](https://github.com/jacobcreedwatkins/security/blob/main/web.py)
 
 
+1. Change the `authors` variable to match the HTML query you are matching, and set your `page` to the IP you are targeting through your dynamic tunnel
+2. Alternatively, set to localhost:port if you are using a local port forwarding instead of a dynamic tunnel
+3. Right click -> view page source allows you to see the HTML document, allowing you to query it with your script.
+
+
 
 
 

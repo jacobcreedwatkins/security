@@ -12,8 +12,7 @@
 ### CTFd server login
 username: **JAWA-03-M**
 
-password: **Fm9WjWQ6oGnlLz8**
-NEW **Baseball131313$**
+password: **Baseball131313$**
 
 pivot:    **10.50.31.225**
 

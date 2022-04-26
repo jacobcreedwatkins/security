@@ -49,7 +49,7 @@ for i in {1..254}; do (ping -c 1 192.168.1.$i | grep "bytes from" &); done
 
 for i in {1..254}; do (ping -c 1 192.168.65.$i | grep "bytes from" &); done
 
-https://www.rubyguides.com/2012/02/cli-ninja-ping-sweep/
+https://www.rubyguides.com/2012/02/cli-ninja-ping-sweep/ 
 
 64 bytes from 192.168.65.1: icmp_seq=1 ttl=64 time=2.24 ms
 64 bytes from 192.168.65.3: icmp_seq=1 ttl=64 time=2.68 ms

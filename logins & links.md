@@ -10,7 +10,7 @@
 
 # Logins
 ### CTFd server login
-username: **JAWA-03-M**
+username: **JAWA-003-M**
 
 password: **Baseball131313$**
 

@@ -6,7 +6,7 @@
 
 [CTFd Server](http://10.50.22.9:8000/)
 
-[Network Map & Schedule](http://10.50.34.125/uploads/)
+[Network Map, Schedule, and Uploads](http://10.50.34.125/uploads/)
 
 # Logins
 ### CTFd server login

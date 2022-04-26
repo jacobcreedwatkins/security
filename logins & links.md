@@ -6,6 +6,8 @@
 
 [CTFd Server](http://10.50.22.9:8000/)
 
+[Network Map & Schedule](http://10.50.34.125/uploads/)
+
 ## Logins
 ### CTFd server login
 username: **JAWA-03-M**
@@ -35,3 +37,4 @@ password: **password**
 xfreerdp /v:10.50.33.133 /u:student /p:password /dynamic-resolution +clipboard /size:1280x1010
 
 **note: make sure you only xfreerdp from ubuntu terminal and NOT terminator!**
+

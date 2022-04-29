@@ -153,7 +153,7 @@ mem2:
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ```
 
-#### Examining C source code
+# Examining C source code
 
 `main():`
 > indicates main entry point and start of program
@@ -173,9 +173,34 @@ mem2:
 > compares str1 and str2
 
 
+`atoi():`
+> ascii to integer
 
-
+`strtok():`
+stuff "This is an example!"
 ```
+strtok(stuff):
+This
+is
+an
+example
+```
+
+
+
+Download:
+- Windows and Linux Ops Station
+- Download to one and then scp to the other, or create a python3 HTTP server, or manually download both on each workstation
+##### download the following:
+
+1. Demo1.c
+2. Demo1.exe
+3. Demo2.c
+4. Demo2.exe
+
+
+
+
 
 
 ## x86_64 Assembly Common terms
@@ -187,7 +212,7 @@ mem2:
 - Flags Register	Contains the current status of the processor
 
 #
-3Registers
+Registers
  - **Registers can store values**
  - There are 16 general purpose 64 bit registers
  - 64 bit registers begin with `r`
@@ -199,20 +224,4 @@ mem2:
 - %rip	:	instruction pointer; points to the memory offset of the next instruction
  
 ## x86_64 Assembly Common Instruction Pointers
-
-- *format this into table later*
-
-```
-
-```
-
-
-
-
-
-
-
-
-## Hex Value
-- Memory Address
-- 
+	((update later))

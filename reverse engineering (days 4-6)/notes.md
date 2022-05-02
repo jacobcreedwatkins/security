@@ -225,3 +225,147 @@ Registers
  
 ## x86_64 Assembly Common Instruction Pointers
 	((update later))
+	
+	
+# Binary Analsysis
+
+## Steps:
+
+1. Static Analysis
+2. Behavior Analysis
+3. Dynamic Analysis
+	- Sysinternals tools: procmon, procexp
+4. Disassembler and Decompiler
+5. Documentation
+
+
+##### Demo1.c
+
+```cpp
+
+  1 #include <windows.h>
+  2 #include <stdio.h>
+  3 #include <string.h>
+  4 #include <stdlib.h>
+  5 
+  6 int firstKey(key1)
+  7 {
+  8     int key2 = atoi(key1);
+  9     int p2 = 29;
+ 10     if ((key2-123)==0)
+ 11     {
+ 12         return 13555;
+ 13     }
+ 14     return 12;
+ 15 }
+ 16 
+ 17 int main(void)
+ 18 {
+ 19     char key1[20];
+ 20     printf("Enter Key: ");
+ 21     fgets(key1,20,stdin);
+ 22     strtok(key1, "\n");
+ 23     if (firstKey(key1)==13555)
+ 24     {
+ 25         printf("123 is 123.\n");
+ 26         Sleep(5000);
+ 27         return 0;
+ 28     }
+ 29     else
+ 30     {
+ 31         printf("%s is not 123.\n", key1);
+ 32         Sleep(5000);
+ 33         return 0;
+ 34     }
+ 35 }
+ 36 
+ 37 
+
+```
+
+### Step 1. Static Analysis (demo1.exe)
+
+`file <filename>`	:	determine type of file
+
+[file signatures reference](https://en.wikipedia.org/wiki/List_of_file_signatures)
+
+`strings -n <number> <filename>`	:	print strings matching a given number of characters in length from a given file
+
+- Look for artifacts! interesting tidbits of code/things that match the C code
+
+- `gdb <filename>`
+- gdb = GNU debugger
+
+##### GDB-Peda Commands
+
+```bash
+gdb-peda$ >> pdisass main
+
+
+
+
+
+```
+	
+
+### Step 2. Behavior Analsyis
+
+- Run the file, play with it a bit and see what it does
+
+### Step 4. Disassembler and Decmpiler
+
+- Ghidra
+- IDA
+
+- `file > new project > nonshared project > 
+- `file > import file > file_to_import`
+- compare hashes from ghidra summary and linux md5sum to verify file integrity
+
+
+```
+Example output from middle pane w/ their meaning:
+
+00407cc2   83 c0 08   ADD		EAX,0x8
+Memory	   Opcodes    ASM Instruction    Operands
+```
+
+##### ghidra
+`;`	semicolon is shortcut for command to add comments
+`param_1`	means user input in ghidra
+
+
+- search strings for artifacts to find functions and variables
+- double click `FUN_` to open functions in ghidra
+- to patch, right click and choose "patch instruction"
+- after patching, export file as binary to a different name so that it does not overwrite the original file
+- to export, ``file > export program > change to binary > give name of patched_<file.exe> so you know which one is patched`
+- to run the patched file, .\<patched_file.exe>
+
+
+
+
+# CTFD
+
+
+#### Basic1.exe
+
+```
+ivar1 = 92
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

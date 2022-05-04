@@ -350,8 +350,7 @@ Memory	   Opcodes    ASM Instruction    Operands
 #### Basic1.exe
 
 ```
-ivar1 = 92
-
+add more notes later
 ```
 
 

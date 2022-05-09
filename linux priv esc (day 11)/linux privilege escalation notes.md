@@ -8,8 +8,8 @@
 
 `sudo -l`	:	shows the commands you can run sudo with as current user. IF YOU SEE ANYTHING, TAKE NOTE!
 `/etc/sudoers`	:	file containing all users with sudo access
-
 - if you can sudo `cat`, you can crack passwords with john after looking into `/etc/shadow`!!
+- world writeable directories: use `/tmp`
 
 ## SUID/GUID
 - look for these set bits to pop root
@@ -18,9 +18,114 @@
 - 
 
 ## CRONS
+- [crontab guru, helpful for creating crons](https://crontab.guru/)
+- look into netcat listeners, anything running under root, anything that looks out of the ordinary/opening weird files. use your analyst brain
+- `crontab -l`    :   lists all cronjobs
+- `sudo crontab -l`   :   lists all of root's cronjobs
+- `/etc/crontab`      :   the actual crontab directory
+- `/etc/cron.*`   :   dont actually use * here. there are 6 cron directories to check, start at cron.d and work your way through them
+- look at crons! super important. netcat listeners and beacons are huge
 
-- look into netcat listeners, anything running under root, anything that looks out of the ordinary 
 
-## INSECURE PERMISSIONS
+## INSECURE PERMISSIONS / DOT IN THE PATH
 - `echo $PATH`	:	shows your directory paths for binaries
 - look for `.` in your path variable; can be exploited to run scripts with the same names as known binaries from your current workig directory
+
+
+## USER ACCOUNTS
+
+`user add`
+
+## SANITIZING LOGS
+
+- minimum of 2 logs (ssh login, ssh exit)
+- syslog, rsyslog, /var/log
+
+## READING FILES
+-consider using head/tail to find flags easier
+
+
+## RSYSLOG
+
+`/etc/rsyslog.d/*`
+`/etc/rsyslog.conf`
+
+
+
+
+
+methodology
+
+- look at sudo commands `sudo -l`
+- if none? look at SUID/GUID bits with find command
+- check gtfobins for each result from your find command related to SUID/GUID
+- 
+
+
+
+# CTFD
+
+```
+Donovian Linux Privilege Escalation, and Persistence (DLP)
+XX Feb 2027
+Start Time: 1300
+Duration: 4 hours
+
+Type of Operation: Cyberspace Exploitation (C-E)
+
+Objective: Maneuver into the Donovian internal network, gain privileged access to discovered Linux hosts.
+
+Tools/Techniques: SSH masquerade into internal network with provided credentials. Ports in use will be dependent on target location and are subject to change. Linux techniques to gain privileged access and persist are limited to host misconfigurations, open suid/sgid, weak permissions, and path. Network scanning tools/technique usage is at the discretion of student.
+
+Scenario Credentials: FLAG = H@RDl1nux5t@rt0F@ct1v1ty
+
+Prior Approvals: Privilege escalation, persistence, and restarting of services through host reboot. Host survey and log sanitation utilizing native command shells, which shell is at discretion of student. NOT authorized is uploading of tools or altering account information.
+
+Scheme of Maneuver:
+>internet_grey_host
+->Pivot:192.168.28.105
+--->T1: 192.168.28.27
+--->T2: 192.168.28.12
+
+Target Section:
+
+Pivot
+Hostname: Donovian-Terminal
+IP: 192.168.28.105
+OS: Ubuntu 18.04
+Creds: comrade :: StudentReconPassword
+Last Known SSH Port: 2222
+PSP: rkhunter
+Malware: none
+Action: Perform SSH masquerade and redirect to the next target. No survey required, cohabitation with known PSP approved.
+
+T1
+Hostname: unknown
+IP: 192.168.28.27
+OS: Linux ver: Unknown
+Creds: comrade :: StudentPrivPassword
+Last Known Ports: unknown
+SSH PORT: 22 default
+PSP: unknown
+Malware: unknown
+Action: Test supplied credentials, if possible gain access to host. Conduct host survey and gain privileged access.
+
+T2
+Hostname: unknown
+IP: 192.168.28.12
+OS: Linux ver: Unknown
+Creds: comrade :: StudentPrivPassword
+Last Known Ports: unknown
+PSP: unknown
+Malware: unknown
+Action: Test supplied credentials, if possible gain access to host. Conduct host survey and gain privileged access.
+
+```
+
+
+
+
+
+
+
+

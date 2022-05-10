@@ -241,6 +241,93 @@ Get-AppxPackage -AllUsers| Foreach {Add-AppxPackage -DisableDevelopmentMode -Reg
 
 [lolbas](https://lolbas-project.github.io/)
 
+### REGISTRY PERSISTENCE
+```
+HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Run
+HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\RunOnce
+HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run
+HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\RunOnce
+
+```
+
+
+
+
+## WINDOWS LOGGING w/ EVENT VIEWER
+
+```
+
+open event viewer
+main 4 logs: security, application, setup, system 
+event id 4624 = logon
+Upper right 'actions' pane allows you to save logs, clear filters, add filters, etc.
+
+
+RETRIEVING LOGS w/ CMD or POWERSHELL
+--------------------------------------
+
+	CMD
+	----
+		wevtutil /?			:	gives help
+		wevtutil /el			:	shows events
+		wevtutil /gl security		:	gets log info from security log
+		wevtutil qe security /f:text	:	queries the security log and puts it in text format
+		
+	POWERSHELL
+	----------
+		get-eventlog security | ft -wrap		:	get the security log and wrap the text
+		get-winevent security | ft -wrap		:	get the security log and wrap the text
+		
+```
+
+
+
+## RETRIEVING WINDOWS AUDIT POLICY on SACL's
+
+```
+auditpol /get /category:*		#retrieve auditing policy on all events. requires adminstrative privileges
+
+
+IMPORTANT EVENT LOGS
+---------------------
+4624/4625 successful/failed login
+
+4720 account created
+
+4672 administrator equivalent user logs on
+
+7045 Service creation
+
+
+```
+
+
+
+## TYPES OF COMMAND LINES
+
+```
+command line	:	does NOT log
+wmic - logs
+cli  - logs
+
+
+scripting language/shell
+powershell - logs
+
+
+wmic logs
+reg query hklm\software\microsoft\wbem\cimom\ | findstr /i logging
+
+	# 0 = no | 1 = errors | 2 = verbose
+	
+powershell logs
+hkcu\software\policies\microsoft\windows\powershell
+
+
+
+```
+
+
 
 
 

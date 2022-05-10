@@ -35,13 +35,14 @@ Two main ways: scheduled tasks and services
 
 - Permissions to Run As SYSTEM
 
+### GETTING SYSINTERNALS TOOLS
 
+` net use * \\live.sysinternals.com\tools`
 
-##### SCHEDULED TASKS DEMO
+##### BINARY REPLACEMENT METHODS DEMO
 
 ```
-
-SETUP
+SCHTASKS METHOD SETUP
 --------------------------------------------------------------------------------------------------------------------------------------------
 schtasks /create /TN Putty  /TR "C:\Putty\Putty.exe" /RU SYSTEM /SC onlogon		#create the schedule tasks
 
@@ -54,8 +55,10 @@ mkdir C:\Putty									#create directory called putty in the C:\ location
 ------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-SCHTASKS METHOD
---------------------
+SCHTASKS METHOD (binary replacement)
+-------------------------------------
+Premise: non-privileged user who attempted to elevate privileges
+
 1) Determine the conditions
 
 	1. open task scheduler
@@ -76,27 +79,83 @@ SCHTASKS METHOD
 	
 3) Perform actions
 
+	
 	Binary replacement:
 		a. replace legitimate binary with malicious binary
-		b. ensure the malicious binary has the name that the actions tab is calling for
+		b. rename the original binary with a different backup name (i.e. putty.exe -> bak_putty.exe) 
+		c. ensure the malicious binary has the name that the actions tab is calling for (i.e. shell.exe -> putty.exe)
 
 		- http://10.50.35.61/uploads
 		- File Explorer > View > 
 		  [X] File Name Extensions
 		  [X] Hidden Items
 	
-		c.
+	
+4) Reboot / Log On / Log back in
+
+	- shutdown /r /f /t 00
 
 
 
+SERVICES METHOD (binary replacement)
+---------------------------------------
+1) Determine the conditions
+	- first open services from windows searchbar, then look at main window
+	
+	- log on as: Local System
+	- startup type: Automatic
+	- description: Blank (third party service)
+
+	Third party software may be installed in non-standard windows directory locations
+		C:\Windows
+		C:\Windows\System32
+		
+	right click -> properties
+	- path to executable: C:\putty\putty.exe
+
+2) Determine vulnerable directory (if we have write permissions)
+
+	- attempt to create a file inside the directory
+	
+3) Perform actions
+
+	
+	Binary replacement:
+		a. replace legitimate binary with malicious binary
+		b. rename the original binary with a different backup name (i.e. putty.exe -> bak_putty.exe) 
+		c. ensure the malicious binary has the name that the actions tab is calling for (i.e. shell.exe -> putty.exe)
+
+		- http://10.50.35.61/uploads
+		- File Explorer > View > 
+		  [X] File Name Extensions
+		  [X] Hidden Items
+	
+	
+4) Reboot /log on / log back in 
 
 ```
 
+# USING PROCMON TO FIND DLL's
+
+```
+1. first make sure you have sysinternals tools:
+
+	net use * \\live.sysinternals.com\tools
+
+2. next use procmon and accept the eula
+	
+	.\procmon.exe --accepteula
 
 
+3. use the following filters:
 
+	a) process name - contains - putty - include
+	b) result - contains - NOT include
+	c) path - contains - .dll - include
 
+4. then run putty, your procmon filters should populate with output now
 
+```
 
 
 

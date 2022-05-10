@@ -50,8 +50,45 @@ mkdir C:\Putty									#create directory called putty in the C:\ location
 
 [putty download](https://www.chiark.greenend.org.uk/~sgtatham/putty/releases/0.67.html)
 
-#download the putty.exe (ssh and telnet client itself) 32-bit version to winops
+#download the putty.exe (ssh and telnet client itself) 32-bit version to winops, move putty.exe to the putty directory
 ------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+SCHTASKS METHOD
+--------------------
+1) Determine the conditions
+
+	1. open task scheduler
+	2. open General tab in bottom middle pane
+	- security options: SYSTEM (indicates privilege level is 'system', which is high level priviliges)
+
+	3. open trigger tab in bottom middle pane
+	- trigger: at log on
+	- status: enabled
+
+
+	4. open actions tab in bottom middle pane
+	- action: C:\Putty\Putty.exe
+
+2) Determine if we have write permissions at the location
+
+	- attempt to create a file inside the directory. if it works, you can do schedule tasks priv esc!
+	
+3) Perform actions
+
+	Binary replacement:
+		a. replace legitimate binary with malicious binary
+		b. ensure the malicious binary has the name that the actions tab is calling for
+
+		- http://10.50.35.61/uploads
+		- File Explorer > View > 
+		  [X] File Name Extensions
+		  [X] Hidden Items
+	
+		c.
+
+
+
 
 ```
 

